@@ -23,6 +23,7 @@ public class XmlToJsonConverterDocSample extends XmlToJsonConverter {
 		String tagName = currentTag.getTagName();
 		// special handling of metadata section
 		if ( this.isMetaSection(tagName) ) {
+			currentNode.set( this.getPropertyTag() , new TextNode(tagName) );
 			NodeList list = currentTag.getChildNodes();
 			ArrayNode kidsNode = mapper.createArrayNode();
 			ArrayNode infoNode = mapper.createArrayNode();

@@ -96,7 +96,7 @@ public class XmlToJsonConverter {
 	 * JSON to XML Conversion 
 	 */
 	
-	private void iterateElement( JsonNode current, Document doc, Element tag ) throws ConfigException {
+	protected void iterateElement( JsonNode current, Document doc, Element tag ) throws ConfigException {
 		JsonNode elementsNode = current.get( this.getPropertyElements() );
 		if ( elementsNode != null ) {
 			if ( elementsNode.isArray() ) {
@@ -111,6 +111,15 @@ public class XmlToJsonConverter {
 		}
 	}
 	
+	protected String getTagNameOrThrowException( JsonNode current ) throws ConfigException {
+		JsonNode tagNode = current.get( this.getPropertyTag() );
+		if ( tagNode == null ) {
+			throw new ConfigException( "Tag node is null : "+this.getPropertyTag() );
+		} else {
+			return tagNode.asText();
+		}
+	}
+	
 	public void addAttributes( JsonNode current, Element tag ) {
 		Iterator<String> itNames = current.fieldNames();
 		while ( itNames.hasNext() ) {
@@ -122,23 +131,17 @@ public class XmlToJsonConverter {
 	}
 	
 	public Element handleNode( Document doc, Element parent, JsonNode current ) throws ConfigException {
-		Element tag = null;
-		JsonNode tagNode = current.get( this.getPropertyTag() );
-		if ( tagNode == null ) {
-			throw new ConfigException( "Tag node is null : "+this.getPropertyTag() );
-		} else {
-			String tagName = tagNode.asText();
-			tag = doc.createElement( tagName );
-			if ( parent != null ) {
-				parent.appendChild( tag );
-			}
-			JsonNode textNode = current.get( this.getPropertyText() );
-			if ( textNode != null ) {
-				tag.appendChild( doc.createTextNode( textNode.asText() ) );
-			}
-			this.iterateElement(current, doc, tag);
-			this.addAttributes(current, tag);
+		String tagName = this.getTagNameOrThrowException(current);
+		Element tag = doc.createElement( tagName );
+		if ( parent != null ) {
+			parent.appendChild( tag );
 		}
+		JsonNode textNode = current.get( this.getPropertyText() );
+		if ( textNode != null ) {
+			tag.appendChild( doc.createTextNode( textNode.asText() ) );
+		}
+		this.iterateElement(current, doc, tag);
+		this.addAttributes(current, tag);
 		return tag;
 	}
 
