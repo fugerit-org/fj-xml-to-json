@@ -63,7 +63,12 @@
 		    <artifactId>slf4j-simple</artifactId>
 		   <scope>test</scope>
 		</dependency>
-			
+
+		<dependency>
+		    <groupId>com.fasterxml.jackson.dataformat</groupId>
+		    <artifactId>jackson-dataformat-yaml</artifactId>
+		</dependency>
+
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>

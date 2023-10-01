@@ -63,3 +63,4 @@ See [conversion conventions](src/main/docs/xml_conversion.md) below for more inf
 ## Documentation
 
 - xml to json conversion conventions (see [xml conversion](src/main/docs/xml_conversion.md))
+- [yaml support](src/main/docs/yaml_support.md) documentation
