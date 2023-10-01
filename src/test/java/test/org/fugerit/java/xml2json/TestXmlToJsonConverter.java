@@ -16,14 +16,14 @@ import com.fasterxml.jackson.databind.JsonNode;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class TestDefaultXmlConverter {
+public class TestXmlToJsonConverter {
 
 	private boolean testWorkerDoc( String testId ) throws IOException, ConfigException, XMLException {
 		File outputFile = new File( "target/doc_converter_"+testId+".json" );
 		String path = "cl://sample/"+testId+".xml";
 		log.info( "test worker path : {}, output : {}", path, outputFile.getCanonicalPath() );
 		try ( Reader reader = StreamHelper.resolveReader( path ) ) {
-			XmlToJsonHandler handler = new XmlToJsonHandler( new DefaultXmlConverterDocSample() );
+			XmlToJsonHandler handler = new XmlToJsonHandler( new XmlToJsonConverterDocSample() );
 			JsonNode node = handler.convertToJsonNode(reader);
 			handler.getMapper().writerWithDefaultPrettyPrinter().writeValue( outputFile , node );
 		}

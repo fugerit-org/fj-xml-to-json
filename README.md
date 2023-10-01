@@ -15,7 +15,7 @@ Module to convert xml to json and viceversa
 
 ## Quickstart
 
-Sample code : 
+Sample code to convert from XML to JSON : 
 
 ```
 		try ( Reader reader = StreamHelper.resolveReader( path ) ) {
@@ -56,6 +56,15 @@ Will be converted to :
     } ]
   } ]
 }
+```
+
+```
+		try ( Reader reader = StreamHelper.resolveReader( path );
+				FileWriter writer = new FileWriter(outputFile) ) {
+			XmlToJsonHandler handler = new XmlToJsonHandler();
+			Element root = handler.convertToElement( reader );
+			DOMIO.writeDOMIndent( root , writer );
+		}
 ```
 
 See [conversion conventions](src/main/docs/xml_conversion.md) below for more info.

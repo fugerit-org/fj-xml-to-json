@@ -1,0 +1,7 @@
+{
+  "default-list" : "list1",
+  "_t" : "config",
+  "_e" : [ {
+    "id" : "will fail as not _t property"
+  } ]
+}

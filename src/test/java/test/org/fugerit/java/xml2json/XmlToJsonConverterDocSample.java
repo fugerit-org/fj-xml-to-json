@@ -1,6 +1,6 @@
 package test.org.fugerit.java.xml2json;
 
-import org.fugerit.java.xml2json.DefaultXmlConverter;
+import org.fugerit.java.xml2json.XmlToJsonConverter;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -10,7 +10,7 @@ import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.databind.node.TextNode;
 
-public class DefaultXmlConverterDocSample extends DefaultXmlConverter {
+public class XmlToJsonConverterDocSample extends XmlToJsonConverter {
 
 	private static final String TAG_INFO = "info";
 	

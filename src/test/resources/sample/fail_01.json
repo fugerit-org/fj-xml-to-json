@@ -1,0 +1,9 @@
+{
+  "default-list" : "list1",
+  "_t" : "config",
+  "_e" : [ {
+    "id" : "list1",
+    "_t" : "test-list",
+    "_e" : "it will fail here"
+  } ]
+}
