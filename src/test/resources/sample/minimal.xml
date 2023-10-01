@@ -1,0 +1,6 @@
+<config default-list="list1">
+	<test-list id="list1">
+		<test-entry id="entry1">Entry 1</test-entry>
+		<test-entry id="entry2">Entry 2</test-entry>
+	</test-list>
+</config>
