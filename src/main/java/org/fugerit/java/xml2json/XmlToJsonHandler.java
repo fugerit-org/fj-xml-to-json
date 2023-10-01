@@ -23,6 +23,10 @@ public class XmlToJsonHandler {
 		this( mapper, new DefaultXmlConverter() );
 	}
 	
+	public XmlToJsonHandler(DefaultXmlConverter converter) {
+		this( new ObjectMapper(), converter );
+	}
+	
 	public XmlToJsonHandler(ObjectMapper mapper, DefaultXmlConverter converter) {
 		super();
 		this.mapper = mapper;
