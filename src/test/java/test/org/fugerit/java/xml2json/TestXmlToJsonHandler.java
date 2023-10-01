@@ -5,14 +5,11 @@ import java.io.IOException;
 import java.io.Reader;
 
 import org.fugerit.java.core.cfg.ConfigException;
-import org.fugerit.java.core.io.FileIO;
 import org.fugerit.java.core.io.helper.StreamHelper;
 import org.fugerit.java.core.xml.XMLException;
-import org.fugerit.java.core.xml.dom.DOMIO;
 import org.fugerit.java.xml2json.XmlToJsonHandler;
 import org.junit.Assert;
 import org.junit.Test;
-import org.w3c.dom.Document;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
@@ -26,10 +23,9 @@ public class TestXmlToJsonHandler {
 		String path = "cl://sample/"+testId+".xml";
 		log.info( "test worker path : {}, output : {}", path, outputFile.getCanonicalPath() );
 		try ( Reader reader = StreamHelper.resolveReader( path ) ) {
-			Document doc = DOMIO.loadDOMDoc( reader );
 			XmlToJsonHandler handler = new XmlToJsonHandler();
-			JsonNode node = handler.convert( doc.getDocumentElement() );
-			FileIO.writeString( node.toPrettyString() , outputFile );
+			JsonNode node = handler.convertToJsonNode(reader);
+			handler.getMapper().writerWithDefaultPrettyPrinter().writeValue( outputFile , node );
 		}
 		return outputFile.exists();
 	}

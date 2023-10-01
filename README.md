@@ -19,10 +19,9 @@ Sample code :
 
 ```
 		try ( Reader reader = StreamHelper.resolveReader( path ) ) {
-			Document doc = DOMIO.loadDOMDoc( reader );
 			XmlToJsonHandler handler = new XmlToJsonHandler();
-			JsonNode node = handler.convert( doc.getDocumentElement() );
-			FileIO.writeString( node.toPrettyString() , outputFile );
+			JsonNode node = handler.convertToJsonNode(reader);
+			handler.getMapper().writerWithDefaultPrettyPrinter().writeValue( outputFile , node );
 		}
 ```
 
