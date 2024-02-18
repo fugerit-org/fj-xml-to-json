@@ -7,13 +7,13 @@
 	<parent>
 		<groupId>org.fugerit.java</groupId>
 		<artifactId>fj-bom</artifactId>
-		<version>1.4.7</version>
+		<version>1.6.0</version>
 		<relativePath/>
 	</parent>
 
 	<name>Fugerit XML to JSON</name>
 	<description>Module to convert xml to json and viceversa.</description>
-	<version>0.1.1</version>
+	<version>1.0.0</version>
 
 	<licenses>
 		<license>
@@ -24,7 +24,7 @@
 	</licenses>
 
 	<properties>
-		<fj-version>8.4.7</fj-version>
+		<fj-version>8.4.8</fj-version>
 	</properties>
 
 	<scm>
