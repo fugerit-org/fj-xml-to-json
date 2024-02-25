@@ -7,7 +7,6 @@ import org.fugerit.java.core.io.helper.HelperIOException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 
 @Slf4j
@@ -26,9 +25,7 @@ public class ProcessJson {
             ObjectMapper mapper = new ObjectMapper();
             LinkedHashMap<String, Object> jsonMap = mapper.readValue( is, LinkedHashMap.class );
             ProcessPropertyRecurse ppr = new ProcessPropertyRecurse( pp );
-            jsonMap.entrySet().forEach( e -> {
-                ppr.processProperty( jsonMap, "", jsonMap, e.getKey(), e.getValue() );
-            } );
+            jsonMap.entrySet().forEach( e -> ppr.processProperty( jsonMap, "", jsonMap, e.getKey(), e.getValue() ) );
             if ( prettyPrint ) {
                 mapper.writerWithDefaultPrettyPrinter().writeValue( os, jsonMap );
             } else {

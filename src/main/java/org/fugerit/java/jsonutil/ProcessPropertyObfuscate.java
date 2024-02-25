@@ -16,8 +16,8 @@ public class ProcessPropertyObfuscate implements  ProcessProperty {
 
     public static final String DEFAULT_OBFUSCATE_FIXED = "***";
 
-    public static Function <Object, String> SAMPLE_OBFUSCATE_FUN = v -> {
-        return SafeFunction.get( () -> {
+    public static final Function <Object, String> SAMPLE_OBFUSCATE_FUN = v ->
+        SafeFunction.get( () -> {
             String res = DEFAULT_OBFUSCATE_FIXED;
             SecureRandom sr = SecureRandom.getInstanceStrong();
             if ( v != null ) {
@@ -37,7 +37,6 @@ public class ProcessPropertyObfuscate implements  ProcessProperty {
             }
             return res;
         } );
-    };
 
     private Function <Object, String> obfuscateFun;
 
@@ -58,7 +57,7 @@ public class ProcessPropertyObfuscate implements  ProcessProperty {
     }
 
     @Override
-    public void processProperty(LinkedHashMap<String, Object> jsonRoot, String path, LinkedHashMap<String, Object> jsonParent, String key, Object value) {
+    public void processProperty(Map<String, Object> jsonRoot, String path, Map<String, Object> jsonParent, String key, Object value) {
         if ( this.pNames.contains( key ) ) {
             String obfuscatedValue = this.obfuscateFun.apply( value );
             log.trace( "obfuscating value for key {} -> {}", key, obfuscatedValue );

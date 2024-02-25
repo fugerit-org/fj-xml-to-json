@@ -1,9 +1,9 @@
 package org.fugerit.java.jsonutil;
 
-import java.util.LinkedHashMap;
+import java.util.Map;
 
 public interface ProcessProperty {
 
-    public void processProperty( LinkedHashMap<String, Object> jsonRoot, String path, LinkedHashMap<String, Object> jsonParent, String key, Object value );
+    public void processProperty(Map<String, Object> jsonRoot, String path, Map<String, Object> jsonParent, String key, Object value );
 
 }
