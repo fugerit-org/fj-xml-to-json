@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Chanted
+
+- Added support for Reader/Writer to ProcessJson utl
+
 ## [1.1.0] - 2024-02-25
 
 ### Added

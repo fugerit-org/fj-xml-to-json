@@ -31,7 +31,7 @@ public class TestProcessJson {
         try ( InputStream is = Files.newInputStream( input.toPath() );
               OutputStream os = Files.newOutputStream( output.toPath() ) ) {
             ProcessJson pj = new ProcessJson();
-            pj.handlePrettyPrint( is, os, new ProcessPropertyObfuscate(Arrays.asList( "name" ))  );
+            pj.handle( is, os, new ProcessPropertyObfuscate(Arrays.asList( "name" ))  );
         }
         Assert.assertTrue( output.isFile() );
     }
@@ -43,7 +43,7 @@ public class TestProcessJson {
         try ( InputStream is = Files.newInputStream( input.toPath() );
              OutputStream os = Files.newOutputStream( output.toPath() ) ) {
             ProcessJson pj = new ProcessJson();
-            pj.handlePrettyPrint( is, os, new ProcessPropertyObfuscate( ProcessPropertyObfuscate.SAMPLE_OBFUSCATE_FUN  , Arrays.asList( "_t", "_v" ))  );
+            pj.handle( is, os, new ProcessPropertyObfuscate( ProcessPropertyObfuscate.SAMPLE_OBFUSCATE_FUN  , Arrays.asList( "_t", "_v" ))  );
         }
         Assert.assertTrue( output.isFile() );
     }
