@@ -13,7 +13,15 @@ import java.util.LinkedHashMap;
 @Slf4j
 public class ProcessJson {
 
+    public void handlePrettyPrint(InputStream is, OutputStream os, ProcessProperty pp ) throws IOException {
+        this.handle( is, os, pp, true );
+    }
+
     public void handle(InputStream is, OutputStream os, ProcessProperty pp ) throws IOException {
+        this.handle( is, os, pp, false );
+    }
+
+    public void handle(InputStream is, OutputStream os, ProcessProperty pp, boolean prettyPrint ) throws IOException {
         HelperIOException.apply( () -> {
             ObjectMapper mapper = new ObjectMapper();
             LinkedHashMap<String, Object> jsonMap = mapper.readValue( is, LinkedHashMap.class );
@@ -21,6 +29,11 @@ public class ProcessJson {
             jsonMap.entrySet().forEach( e -> {
                 ppr.processProperty( jsonMap, "", jsonMap, e.getKey(), e.getValue() );
             } );
+            if ( prettyPrint ) {
+                mapper.writerWithDefaultPrettyPrinter().writeValue( os, jsonMap );
+            } else {
+                mapper.writeValue(os, jsonMap);
+            }
         } );
     }
 
