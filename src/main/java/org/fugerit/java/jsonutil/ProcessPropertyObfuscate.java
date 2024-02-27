@@ -6,37 +6,14 @@ import org.fugerit.java.core.function.SafeFunction;
 import java.security.SecureRandom;
 import java.util.*;
 import java.util.function.Function;
+import java.util.function.IntFunction;
 
 @Slf4j
-public class ProcessPropertyObfuscate implements  ProcessProperty {
-
-    private static final String LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-
-    private static final String NUMBERS = "0123456789";
+public class  ProcessPropertyObfuscate implements  ProcessProperty {
 
     public static final String DEFAULT_OBFUSCATE_FIXED = "***";
 
-    public static final Function <Object, String> SAMPLE_OBFUSCATE_FUN = v ->
-        SafeFunction.get( () -> {
-            String res = DEFAULT_OBFUSCATE_FIXED;
-            SecureRandom sr = SecureRandom.getInstanceStrong();
-            if ( v != null ) {
-                StringBuilder sb = new StringBuilder();
-                String tmp = String.valueOf( v );
-                for ( int k=0; k<tmp.length(); k++ ) {
-                    char c = tmp.charAt(k);
-                    if ( Character.isAlphabetic( c ) ) {
-                        sb.append( LETTERS.charAt( sr.nextInt( LETTERS.length() ) ) );
-                    } else if ( Character.isDigit( c ) ) {
-                        sb.append( NUMBERS.charAt( sr.nextInt( NUMBERS.length() ) ) );
-                    } else {
-                        sb.append( c );
-                    }
-                }
-                res = sb.toString();
-            }
-            return res;
-        } );
+    public static final Function <Object, String> SAMPLE_OBFUSCATE_FUN = new SampleObfuscateFun( new DefaultRandomizer() );
 
     private Function <Object, String> obfuscateFun;
 

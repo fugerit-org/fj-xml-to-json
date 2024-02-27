@@ -15,9 +15,9 @@ public class ProcessPropertyRecurse implements ProcessProperty {
     @Override
     public void processProperty(Map<String, Object> jsonRoot, String path, Map<String, Object> jsonParent, String key, Object value) {
         if ( value instanceof  LinkedHashMap ) {
-            LinkedHashMap<String, Object> newParant = ((LinkedHashMap<String, Object>) value);
-            newParant.entrySet().forEach(
-                    e -> this.processProperty(jsonRoot, path + "." + e.getKey(), newParant, e.getKey(), e.getValue())
+            LinkedHashMap<String, Object> newParent = ((LinkedHashMap<String, Object>) value);
+            newParent.entrySet().forEach(
+                    e -> this.processProperty(jsonRoot, path + "." + e.getKey(), newParent, e.getKey(), e.getValue())
             );
         } else if ( value instanceof List) {
             List<Object> list = (List<Object>) value;

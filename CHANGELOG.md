@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.0] - 2024-02-27
+
+### Added
+
+- New SampleObfuscateFun function
+
+### Changed
+
+- fj-bom set to 1.6.1
+- Default randomizer uses now java.util.Random instead of SecureRandom (but it is possible to customize it)
+
 ## [1.1.1] - 2024-02-25
 
 ### Changed
@@ -26,7 +37,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - fj-bom set to 1.6.0
 - fj-lib set to 8.4.8
 - Workflows review
-- Upgraded build_maven_package workflow to version 1.0.1, (accespt DISABLE_MAVEN_DEPENDENCY_SUBMISSION)
+- Upgraded build_maven_package workflow to version 1.0.1, (accepts DISABLE_MAVEN_DEPENDENCY_SUBMISSION)
 
 ## [0.1.1] - 2023-10-01
 

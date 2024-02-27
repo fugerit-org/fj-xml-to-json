@@ -15,10 +15,10 @@ public class ProcessJson {
     private static final ObjectMapper MAPPER = new ObjectMapper();
 
     @Getter
-    private ObjectWriter writer;
+    private ObjectWriter objectWriter;
 
-    public ProcessJson(ObjectWriter writer) {
-        this.writer = writer;
+    public ProcessJson(ObjectWriter objectWriter) {
+        this.objectWriter = objectWriter;
     }
 
     public ProcessJson() {
@@ -31,7 +31,7 @@ public class ProcessJson {
             LinkedHashMap<String, Object> jsonMap = mapper.readValue( is, LinkedHashMap.class );
             ProcessPropertyRecurse ppr = new ProcessPropertyRecurse( pp );
             jsonMap.entrySet().forEach( e -> ppr.processProperty( jsonMap, "", jsonMap, e.getKey(), e.getValue() ) );
-            this.writer.writeValue( os, jsonMap );
+            this.objectWriter.writeValue( os, jsonMap );
          } );
     }
 
