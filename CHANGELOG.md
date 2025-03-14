@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- fj-bom set to 1.7.2
 - fj-lib set to 8.6.6
 
 ## [1.2.0] - 2024-02-27
