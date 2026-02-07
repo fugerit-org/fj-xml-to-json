@@ -29,7 +29,7 @@ import lombok.Getter;
 @Slf4j
 public class XmlToJsonConverter {
 
-    private static final String XMLNS = "xmlns";
+    private static final String ATT_XMLNS = "xmlns";
 
 	public static final String DEF_PROPERTY_TAG = "_t";
 	
@@ -141,7 +141,7 @@ public class XmlToJsonConverter {
 			}
 		}
         if ( StringUtils.isNotEmpty( this.getXmlns() ) ) {
-            tag.setAttribute( XMLNS, this.getXmlns() );
+            tag.setAttribute(ATT_XMLNS, this.getXmlns() );
         }
 	}
 	
