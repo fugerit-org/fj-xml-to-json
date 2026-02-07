@@ -13,7 +13,7 @@
 
 	<name>Fugerit XML to JSON</name>
 	<description>Module to convert xml to json and viceversa.</description>
-	<version>1.2.2-SNAPSHOT</version>
+	<version>1.2.2</version>
 
 	<licenses>
 		<license>
