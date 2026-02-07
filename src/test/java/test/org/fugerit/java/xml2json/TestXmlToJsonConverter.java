@@ -18,7 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class TestXmlToJsonConverter {
 
-	private boolean testWorkerDoc( String testId ) throws IOException, ConfigException, XMLException {
+	private boolean testWorkerDoc( String testId, String xmlns ) throws IOException, ConfigException, XMLException {
 		File outputFile = new File( "target/doc_converter_"+testId+".json" );
 		String path = "cl://sample/"+testId+".xml";
 		log.info( "test worker path : {}, output : {}", path, outputFile.getCanonicalPath() );
@@ -32,7 +32,13 @@ public class TestXmlToJsonConverter {
 	
 	@Test
 	public void test1doc() throws ConfigException, IOException, XMLException {
-		Assert.assertTrue( this.testWorkerDoc( "doc_test_01" ) );
+		Assert.assertTrue( this.testWorkerDoc( "doc_test_01", null ) );
 	}
+
+
+    @Test
+    public void test1docXmlns() throws ConfigException, IOException, XMLException {
+        Assert.assertTrue( this.testWorkerDoc( "doc_test_01", "http://javacoredoc.fugerit.org" ) );
+    }
 	
 }

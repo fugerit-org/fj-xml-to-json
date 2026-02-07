@@ -41,6 +41,11 @@ public class XmlToJsonHandler {
 	
 	@Getter private XmlToJsonConverter converter;
 
+    public XmlToJsonHandler withXmlns( String xmlns ) {
+        this.converter.setXmlns( xmlns );
+        return this;
+    }
+
 	private ObjectNode create( Element currentTag, ObjectNode currentNode ) {
 		return this.getConverter().handleTag(this.mapper, currentTag, currentNode);
 	}

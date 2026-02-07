@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Properties;
 import java.util.Set;
 
+import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 import org.fugerit.java.core.cfg.ConfigException;
 import org.fugerit.java.core.lang.helpers.StringUtils;
 import org.fugerit.java.core.xml.dom.DOMUtils;
@@ -24,7 +26,10 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import lombok.Getter;
 
+@Slf4j
 public class XmlToJsonConverter {
+
+    private static final String XMLNS = "xmlns";
 
 	public static final String DEF_PROPERTY_TAG = "_t";
 	
@@ -51,6 +56,9 @@ public class XmlToJsonConverter {
 	@Getter private String propertyText;
 	
 	private Set<String> specialProperties;
+
+    @Getter @Setter
+    private String xmlns;
 	
 	/*
 	 * XML to JSON Conversion 
@@ -124,6 +132,7 @@ public class XmlToJsonConverter {
 		Iterator<String> itNames = current.fieldNames();
 		while ( itNames.hasNext() ) {
 			String currentName = itNames.next();
+            log.trace( "tagName : {} , currentName : {}", tag.getTagName(), currentName );
 			if ( !this.specialProperties.contains( currentName ) ) {
                 String currentValue = current.get( currentName ).asText();
                 if ( StringUtils.isNotEmpty( currentValue ) ) {
@@ -131,6 +140,9 @@ public class XmlToJsonConverter {
                 }
 			}
 		}
+        if ( StringUtils.isNotEmpty( this.getXmlns() ) ) {
+            tag.setAttribute( XMLNS, this.getXmlns() );
+        }
 	}
 	
 	public Element handleNode( Document doc, Element parent, JsonNode current ) throws ConfigException {
@@ -141,7 +153,10 @@ public class XmlToJsonConverter {
 		}
 		JsonNode textNode = current.get( this.getPropertyText() );
 		if ( textNode != null ) {
-			tag.appendChild( doc.createTextNode( textNode.asText() ) );
+            String currentValue = textNode.asText();
+            if ( StringUtils.isNotEmpty( currentValue ) ) {
+                tag.appendChild( doc.createTextNode( currentValue ) );
+            }
 		}
 		this.iterateElement(current, doc, tag);
 		this.addAttributes(current, tag);
