@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - fj-bom set to 2.0.7
+- xml to json - empty attributes value are skipped
 
 ## [1.2.1] - 2025-03-14
 

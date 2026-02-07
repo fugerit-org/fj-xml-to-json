@@ -125,7 +125,10 @@ public class XmlToJsonConverter {
 		while ( itNames.hasNext() ) {
 			String currentName = itNames.next();
 			if ( !this.specialProperties.contains( currentName ) ) {
-				tag.setAttribute( currentName , current.get( currentName ).asText() );
+                String currentValue = current.get( currentName ).asText();
+                if ( StringUtils.isNotEmpty( currentValue ) ) {
+                    tag.setAttribute( currentName , currentValue );
+                }
 			}
 		}
 	}
